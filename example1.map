@@ -1,0 +1,48 @@
+graph BT
+
+%% Create Initiatives within Horizons
+subgraph Now Horizon
+    Now(-The Now House-)
+end
+subgraph horizon 1
+    Initative1((Initative 1))
+    Initative2((Initative 2))
+end
+subgraph horizon 2
+    Initative3((Initiative 3))
+    Waypoint1{Waypoint&lt;br/&gt;Decision Point}
+    Initative4((Initative 4))
+    Initative5((Initative 5))
+    Milestone1>Milestone 1]
+end
+subgraph horizon 3
+    Initative6((Initative 6))
+    Milestone2>Milestone 2]
+end
+subgraph Goal Horizon
+    Goal(-fa:fa-flag-)
+end
+
+%% Link Initiatives
+Now --> Initative1
+Now --> Initative2
+Initative1 --> Initative3
+Initative2 -. Before .- Initative3
+Initative2 --> Initative3
+Initative3 --> Waypoint1
+Initative3 -.-> Milestone1
+Waypoint1 --> Initative4
+Waypoint1 --> Initative5
+Initative5 --> Initative6
+Initative4 --> Goal
+Initative4 -. Before.- Initative6
+Initative4 -.-> Milestone2
+Initative5 -.-> Milestone2
+Initative6 --> Goal
+
+%% Hyperlinks to your Goal and Initiative definitions
+click Goal "https://docs.munromaps.com.au/strategy/the-mechanics/smart-goal"
+click Now "https://docs.munromaps.com.au/strategy/the-mechanics/the-now-house"
+click Initative1 "https://docs.munromaps.com.au/strategy/the-mechanics/what-is-a-munro-card"
+click Milestone1 "https://docs.munromaps.com.au/strategy/the-mechanics/what-is-a-munro-milestone"
+click Waypoint1 "javascript:alert('Make a decision here based on data from Milestone1');window.close();"
