@@ -99,7 +99,7 @@
         $('#graph > *, #dgraph').remove()
         mermaid.render('graph', $('#definition').text().trim(), fixGraphAfterRender)
       }
-      $('#definition').on('input', onchange).load('Example1\example1.map', onchange)
+      $('#definition').on('input', onchange).load('Example1/example1.map', onchange)
       $('#title').on('input', onchange)
     })
   }
