@@ -1,35 +1,45 @@
+body {
+    margin:0 
+}
 pre {
     white-space: pre;
     width: 100%;
     height: 100%;
-    padding: 0;
+    padding: 5px;
+    font-size: 9pt;
 }
-
-* {
+body {
+    margin: 10px;
+}
+button {
+    margin: 10px;
+}
+.wrapper {
+    background-color: #fff;
+    color: #444;
+    display: flex;
+    max-width: 100%;
+}
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
     box-sizing: border-box;
+    flex: 1 1 auto;
+    overflow-x: hidden;
 }
-
-.column {
-    float: left;
-    width: 50%;
-    padding: 10px;
-    overflow-y: scroll;
+.handler {
+    width: 20px;
+    padding: 0;
+    cursor: ew-resize;
+    flex: 0 0 auto;
+}
+.handler::before {
+    content: '';
+    display: block;
+    width: 4px;
     height: 100%;
-}
-
-.column > div {
-    width: 100%;
-    height: 100%;
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-    }
+    background: red;
+    margin: 0 auto;
 }

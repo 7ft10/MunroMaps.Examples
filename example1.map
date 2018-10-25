@@ -46,3 +46,7 @@ click Now "https://docs.munromaps.com.au/strategy/the-mechanics/the-now-house"
 click Initative1 "https://docs.munromaps.com.au/strategy/the-mechanics/what-is-a-munro-card"
 click Milestone1 "https://docs.munromaps.com.au/strategy/the-mechanics/what-is-a-munro-milestone"
 click Waypoint1 "javascript:alert('Make a decision here based on data from Milestone1');window.close();"
+
+%% Style (Included Mermaid Configuration)
+class Goal goalStyle
+class Now nowStyle

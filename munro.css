@@ -1,69 +1,67 @@
+.node, .node div {
+    text-align: center 
+}
+
 .cluster text {
     visibility: hidden;
 }
+
 .cluster rect {
     width: 100000px;
     height: 100000px;
     x: -5000px;
     stroke: none !important;
 }
+
 .cluster:nth-child(5) > * {
     fill: #FEF9E7 !important;
 }
+
 .cluster:nth-child(4) > * {
     fill: #FCF3CF !important;
 }
+
 .cluster:nth-child(3) > * {
     fill: #F9E79F !important;
 }
+
 .cluster:nth-child(2) > * {
     fill: #F4D03F !important;
 }
+
 .cluster:nth-child(1) > * {
     fill: #D4AC0D !important;
 }
-.node div {
-    text-align: center 
-}
+
 .goalStyle ellipse {
-    visibility: hidden;
+    visibility: hidden;    
 }
+
+.goalStyle foreignObject {
+    background-image: url(/images/logo.png);
+    background-repeat: no-repeat;
+    background-size: 50px;
+    height: 50px !important;
+    width: 50px !important;
+}
+
 .goalStyle foreignObject > div > i {
     font-size: 28pt;
 }
+
 .nowStyle ellipse {
     visibility: hidden;
 }
+
 .nowStyle foreignObject {
-    background-image: url(https://munromaps.files.wordpress.com/2018/10/the_now_house.png);
+    background-image: url(/images/the_now_house.png);
     background-repeat: no-repeat;
     background-size: 100px;
     height: 100px !important;
     width: 100px !important;
 }
+
 .nowStyle foreignObject > div {
     position: relative;
     top: 60px;
-}
-.node {
-    text-align: center;
-}
-.logoStyle ellipse {
-    visibility: hidden;
-}
-.logoStyle foreignObject {
-    background-image: url(https://munromaps.files.wordpress.com/2018/10/logo.png);
-    background-repeat: no-repeat;
-    background-size: 50px;
-    height: 50px !important;
-    width: 50px !important;
-    x:10px;
-    y:30px;
-}
-.logoStyle foreignObject > div {
-    font-size: 6pt;
-    position: relative;
-    line-height: 6pt;
-    top: 40pt;
-    left: 0pt;
 }

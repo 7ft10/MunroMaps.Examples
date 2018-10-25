@@ -5,62 +5,33 @@
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Munro Maps - Example 1 using Mermaid JS</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Munro Map Example 1</h1>
+        </header>
+        <main class="wrapper">
+            <section class="box">
+                <pre id="definition" contenteditable="true"></pre>
+            </section>
+            <div class="handler"></div>
+            <section class="box">
+                <div id="graph"></div>
+                <button id="exportToPNG">Export to PNG</button>
+            </section>
+        </main>
+        <footer>
+            <p>Copyright 2018 - by Munro Maps. All Rights Reserved.</p>
+        </footer>
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
         <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="crossorigin="anonymous"></script>
+        <script
             src="https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
-    <body>
-        <div class="row">
-            <div class="column">
-                <pre id="definition" contenteditable="true"></pre>
-            </div>
-            <div class="column">
-                <div id="graph"></div>
-            </div>
-        </div>
-        <script>
-
-            var munroNodes = `
-                %% Style (Included Mermaid Configuration)
-                Logo(-Created using<br/>Munro Maps<br/>technique-)
-                click Logo "http://www.munromaps.com.au/"
-                class Logo logoStyle
-                class Goal goalStyle
-                class Now nowStyle
-                `;
-
-            $(document).ready(function() {              
-                var config = {
-                    startOnLoad: true,
-                    theme: "neutral",
-                    //themeCSS: munroCss,
-                    flowchart: {
-                        useMaxWidth: true,
-                        htmlLabels: true,
-                        curve: "basis"
-                    }
-                };
-
-                mermaid.initialize(config);
-        
-                mermaid.parseError = function(err,hash){
-                    console.log(err);
-                };
-
-                function onchange() {
-                    $("#graph > *, #dgraph").remove();
-                    mermaid.render('graph', $("#definition").text().trim() + munroNodes, function(svgCode, bindFunctions){
-                        $("#graph").html(svgCode).css("max-width", "")
-                        $("#graph, #definition").css("height", $("#graph").attr("viewbox").split(" ")[3]);
-                    });
-                }
-
-                $("#definition").on("input", onchange).load("example1.map");
-            });
-
-        </script>
+        <script src="index.js"></script>
     </body>
 </html>
