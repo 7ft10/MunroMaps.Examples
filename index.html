@@ -13,12 +13,18 @@
         </header>
         <main class="wrapper">
             <section class="box">
-                <pre id="definition" contenteditable="true"></pre>
+                Title: <span id="title" contenteditable="true">Munro Map Title</span>
+                <div>
+                    <pre id="definition" contenteditable="true"></pre>
+                </div>
             </section>
             <div class="handler"></div>
             <section class="box">
                 <div id="graph"></div>
-                <button id="exportToPNG">Export to PNG</button>
+                <div id="exportButtons">
+                    <button id="exportToPNG">Export to PNG</button>
+                    <button id="exportToSVG">Export to SVG</button>
+                </div>
             </section>
         </main>
         <footer>

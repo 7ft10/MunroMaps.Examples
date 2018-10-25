@@ -4,7 +4,6 @@ body {
 pre {
     white-space: pre;
     width: 100%;
-    height: 100%;
     padding: 5px;
     font-size: 9pt;
 }
@@ -24,10 +23,13 @@ button {
     background-color: #444;
     color: #fff;
     border-radius: 5px;
-    padding: 20px;
+    /*padding: 20px;*/
     box-sizing: border-box;
     flex: 1 1 auto;
     overflow-x: hidden;
+}
+.box:nth-of-type(2) > div {
+    margin: 0 auto;
 }
 .handler {
     width: 20px;
@@ -42,4 +44,7 @@ button {
     height: 100%;
     background: red;
     margin: 0 auto;
+}
+#exportButtons {
+    text-align: right;
 }

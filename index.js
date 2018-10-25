@@ -1,63 +1,113 @@
-$(document).ready(function() {   
-    var isHandlerDragging = false;
-    $(document).on('mousedown', function(e) {
-        if (e.target === $('.handler')[0]) {
-            isHandlerDragging = true;
-        }
-    }).on('mouseup', function(e) {
-        isHandlerDragging = false;
-    }).on('mousemove', function(e) {
-        if (!isHandlerDragging) {
-            return false;
-        }
-        var wrapper = $('.handler').parent('.wrapper');
-        wrapper.find('.box:first').css("width", (e.clientX - wrapper.offset().left - 8) + 'px').css("flexGrow", 0);
-    });
-    $('.handler').parent('.wrapper').find('.box:first').css("width", '35%').css("flexGrow", 0);
+;(function () {
+  function setUpBoxResizing () {
+    function resizeFirstBox (to) {
+      $('.handler').parent('.wrapper').find('.box:first').css('width', to).css('flexGrow', 0)
+    }
+    var isHandlerDragging = false
+    $(document).on('mousedown', function (e) {
+      isHandlerDragging = e.target === $('.handler')[0]
+    }).on('mouseup', function (e) {
+      isHandlerDragging = false
+    }).on('mousemove', function (e) {
+      if (!isHandlerDragging) return false
+      resizeFirstBox((e.clientX - $('.handler').parent('.wrapper').offset().left - 8) + 'px')
+    })
+    resizeFirstBox('35%')
+  }
 
-    $("#exportToPNG").on("click", function() {
-        var svg = $("#graph > svg")[0];
-        if (typeof window.XMLSerializer != "undefined") {
-            var svgData = (new XMLSerializer()).serializeToString(svg);
-        } else if (typeof svg.xml != "undefined") {
-            var svgData = svg.xml;
-        }
+  function convertSVGTo (svg, type) {
+    if (typeof window.XMLSerializer != 'undefined') {
+      var svgData = (new XMLSerializer()).serializeToString(svg)
+    } else if (typeof svg.xml != 'undefined') {
+      var svgData = svg.xml
+    }
+    if (!svgData.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+      svgData = svgData.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"')
+    }
+    if (!svgData.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
+      svgData = svgData.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"')
+    }
+    svgData = '<?xml version="1.0" standalone="no"?>\r\n' + svgData
+    switch (type) {
+      case 'PNG':
+        return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)))
 
-        var img = document.createElement("img");
-        img.setAttribute("src", "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData))));
-        img.onload = function() {
-            var canvas = document.createElement("canvas");
-            var svgSize = svg.getBoundingClientRect();
-            canvas.width = svgSize.width;
-            canvas.height = svgSize.height;
-            var ctx = canvas.getContext("2d");
-            ctx.drawImage(img, 0, 0);
-            var imgsrc = canvas.toDataURL("image/png");
-            var a = document.createElement("a");
-            a.download = "munromap.png";
-            a.href = imgsrc;
-            a.click();
-        };
-    });
-    $.get("munro.css", function(munroCss) {               
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: "neutral",
-            themeCSS: munroCss,
-            flowchart: {
-                useMaxWidth: true,
-                htmlLabels: true,
-                curve: "basis"
-            }
-        });        
-        function onchange() {
-            $("#graph > *, #dgraph").remove();
-            mermaid.render('graph', $("#definition").text().trim(), function(svgCode, bindFunctions){
-                $("#graph").html(svgCode).css("max-width", "");
-                var viewport = $("#graph").attr("viewbox").split(" ");
-                $("#graph, #definition").css("height", viewport[3]).css("width", viewport[2]);
-            });
+      case 'SVG':
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData)
+    }
+  }
+
+  function setUpExportToSVG () {
+    $('#exportToSVG').on('click', function () {
+      var svg = $('#graph > svg')[0]
+      var a = document.createElement('a')
+      a.download = 'munromap.svg'
+      a.href = convertSVGTo(svg, 'SVG')
+      a.click()
+    })
+  }
+
+  function setUpExportToPNG () {
+    $('#exportToPNG').on('click', function () {
+      var svg = $('#graph > svg')[0]
+      var img = document.createElement('img')
+      img.setAttribute('src', convertSVGTo(svg, 'PNG'))
+      img.onload = function () {
+        var canvas = document.createElement('canvas')
+        var svgSize = svg.getBoundingClientRect()
+        canvas.width = svgSize.width
+        canvas.height = svgSize.height
+        var ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0)
+        var imgsrc = canvas.toDataURL('image/png')
+        var a = document.createElement('a')
+        a.download = 'munromap.png'
+        a.href = imgsrc
+        a.click()
+      }
+    })
+  }
+
+  function createHeader () {
+    var text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
+    text.setAttributeNS(null, 'x', 10)
+    text.setAttributeNS(null, 'y', 40)
+    text.appendChild(document.createTextNode($('#title').text()))
+    $('#graph > svg').append(text)
+  }
+
+  function fixGraphAfterRender(svgCode, bindFunctions) {    
+    $('#graph').html(svgCode).css('max-width', '')
+    var viewport = $('#graph').attr('viewbox').split(' ')
+    $('#graph, #graph > svg').css('height', viewport[3]).css('width', viewport[2])
+    createHeader()      
+  }
+
+  function initializeMap () {
+    $.get('munro.css', function (munroCss) {
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'neutral',
+        themeCSS: munroCss,
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: 'basis'
         }
-        $("#definition").on("input", onchange).load("example1.map", onchange);
-    });
-});
+      })
+      function onchange () {
+        $('#graph > *, #dgraph').remove()
+        mermaid.render('graph', $('#definition').text().trim(), fixGraphAfterRender)
+      }
+      $('#definition').on('input', onchange).load('Example1\example1.map', onchange)
+      $('#title').on('input', onchange)
+    })
+  }
+
+  $(document).ready(function () {
+    setUpBoxResizing()
+    initializeMap()
+    setUpExportToPNG()
+    setUpExportToSVG()
+  })
+})()
