@@ -4,17 +4,37 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Online FlowChart &amp; Diagrams Editor - Mermaid Live Editor</title>
-        <meta name="og:image"
-            content="https://mermaidjs.github.io/images/header.png">
-        <link rel="canonical"
-            href="https://mermaidjs.github.io/mermaid-live-editor/">
-        <link rel="stylesheet" href="https://mermaidjs.github.io/mermaid-live-editor/src.ce58f242.css">
+        <title>Munro Maps - Example 1 using Mermaid JS</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.core.js"
+            charset="UTF-8"></script>
     </head>
     <body>
         <div id="root">
-
+            <div class="graphDiv">
+                CHART DEFINITION GOES HERE
+            </div>
         </div>
-        <script src="https://mermaidjs.github.io/mermaid-live-editor/src.ec178510.js" charset="UTF-8"></script>
+        <script>
+
+            var config = {
+                startOnLoad:true,
+                flowchart:{
+                    useMaxWidth:false,
+                    htmlLabels:true
+                }
+            };
+            mermaid.initialize(config);
+    
+            $(function(){
+                var element = document.querySelector("#graphDiv");            
+                var insertSvg = function(svgCode, bindFunctions){
+                    element.innerHTML = svgCode;
+                };            
+                var graphDefinition = 'graph TB\na-->b';
+                var graph = mermaidAPI.render('graphDiv', graphDefinition, insertSvg);
+            });
+
+        </script>
     </body>
 </html>
