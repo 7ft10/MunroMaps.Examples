@@ -1,0 +1,25 @@
+foreignObject > div {
+    position: absolute;
+    left: -10px;
+    top: -5px;
+}
+
+[id^=People] > circle {
+    fill: cyan !important;
+}
+
+[id^=Agility] > circle {
+    fill: rgb(255, 238, 0) !important;
+}
+
+[id^=Tools] > circle {
+    fill: rgb(212, 0, 255) !important;
+}
+
+[id^=Practices] > circle {
+    fill: rgb(51, 255, 0) !important;
+}
+
+[id^=Milestone] > polygon {
+    fill: rgb(255, 38, 0) !important;
+}

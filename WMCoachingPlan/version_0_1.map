@@ -1,51 +1,114 @@
 graph BT
 
-%% Create Initiatives within Horizons
 subgraph Now Horizon
     Now(-The Now House-)
 end
 subgraph horizon 1
-    Initative1((Initative 1))
-    Initative2((Initative 2))
+    People_UXDeployments((UX Deployments))
+    People_OverTheFence((Remove Over\nthe Fence))
+
+    Tools_SingleWorkFlow((Single\nWorkflow))
+    Tools_IssueTypes((Single set\nof Issue Types))
 end
 subgraph horizon 2
-    Initative3((Initiative 3))
-    Waypoint1{Waypoint&lt;br/&gt;Decision Point}
-    Initative4((Initative 4))
-    Initative5((Initative 5))
-    Milestone1>Milestone 1]
+    Milestone1>M1: Worflow\nUpdated]
+
+    People_UXupskillBA((UX to\nupskill BA))
+    People_TeamWork((Encourage\nTeam Work))
+    People_IterationReportsAutomated((Iteration\nReports\nAutomated))
+
+    Tools_VersionsDefined((Versions\nDefined))    
+
+    Practices_EvolveBot((Evolve\nthe bot))
+    Practices_CodeReviews((Code\nReviews))
+
+    Agility_DOD((New DOD))
 end
 subgraph horizon 3
-    Initative6((Initative 6))
-    Milestone2>Milestone 2]
-end
+    People_IterationLength((2 week\nIterations))
+
+    Practices_PreWorkHuddles((Pre-Work\nHuddles))
+
+    Tools_Metrics((Team\nMetrics))
+
+    Agility_HasEpics((Each project\nhas epics))
+    Agility_Showcases((Get better\nshowcases))
+end 
+subgraph horizon 4
+    People_RemoveChecklists((Checklists to\nbecome DOD))
+
+    Milestone2>M2: New WOW\nBooklet]
+
+    Agility_LanguageUpdate((Agility\nLangugage\nUpdate))
+    Agility_Personas((Project Personas\nare known\nand used))
+end 
+subgraph horizon 5    
+    Practices_DevOps((DevOps\nMentality))
+
+    Agility_INVEST((INVEST\nprinciples))    
+end 
 subgraph Goal Horizon
     Goal(-fa:fa-flag-)
 end
 
 %% Link Initiatives
-Now --> Initative1
-Now --> Initative2
-Initative1 --> Initative3
-Initative2 -. Before .- Initative3
-Initative2 --> Initative3
-Initative3 --> Waypoint1
-Initative3 -.-> Milestone1
-Waypoint1 --> Initative4
-Waypoint1 --> Initative5
-Initative5 --> Initative6
-Initative4 --> Goal
-Initative4 -. Before.- Initative6
-Initative4 -.-> Milestone2
-Initative5 -.-> Milestone2
-Initative6 --> Goal
 
-%% Hyperlinks to your Goal and Initiative definitions
-click Goal "https://docs.munromaps.com.au/strategy/the-mechanics/smart-goal"
-click Now "https://docs.munromaps.com.au/strategy/the-mechanics/the-now-house"
-click Initative1 "https://docs.munromaps.com.au/strategy/the-mechanics/what-is-a-munro-card"
-click Milestone1 "https://docs.munromaps.com.au/strategy/the-mechanics/what-is-a-munro-milestone"
-click Waypoint1 "javascript:alert('Make a decision here based on data from Milestone1');window.close();"
+People((People\nStream)) --> Now
+Tools((Tools\nStream)) --> Now
+Practices((Practices\nStream)) --> Now
+Agility((Agility\nPractices)) --> Now
+
+%% People Stream 
+Now --> People_UXDeployments
+Now --> People_OverTheFence
+Now --> People_IterationLength
+
+People_UXDeployments --> People_UXupskillBA
+People_OverTheFence --> People_TeamWork
+People_IterationLength --> People_IterationReportsAutomated
+People_IterationReportsAutomated --> People_RemoveChecklists
+
+People_UXupskillBA --> Goal
+People_TeamWork --> Goal 
+People_RemoveChecklists --> Goal 
+
+%% Tools Stream 
+Now --> Tools_SingleWorkFlow
+
+Tools_SingleWorkFlow --> Tools_IssueTypes
+Tools_IssueTypes --> Tools_VersionsDefined
+Tools_VersionsDefined --> Tools_Metrics
+
+Tools_Metrics --> Goal 
+
+%% Practices Stream 
+Now --> Practices_CodeReviews
+Now --> Practices_PreWorkHuddles
+
+Practices_CodeReviews --> Practices_EvolveBot
+Practices_PreWorkHuddles --> Practices_DevOps
+
+Practices_EvolveBot -->  Goal
+Practices_DevOps --> Goal 
+
+%% Agility Practices
+Now --> Agility_Showcases
+Now --> Agility_DOD
+Now --> Agility_LanguageUpdate
+
+Agility_Showcases --> People_IterationReportsAutomated
+Agility_DOD --> People_RemoveChecklists
+Agility_DOD --> Agility_Personas
+Agility_Personas --> Agility_HasEpics
+Agility_HasEpics --> Agility_INVEST
+
+Agility_LanguageUpdate --> Goal 
+Agility_INVEST --> Goal
+
+%% Milestones 
+People_RemoveChecklists -.-> Milestone2
+Tools_SingleWorkFlow -.-> Milestone1
+Tools_IssueTypes -.-> Milestone1
 
 %% Style (Included Mermaid Configuration)
 class Goal goalStyle

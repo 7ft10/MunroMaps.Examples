@@ -2,6 +2,11 @@
     text-align: center 
 }
 
+foreignObject > div:hover {
+    font-weight: bold;
+}
+
+
 .cluster text {
     visibility: hidden;
 }
@@ -13,24 +18,44 @@
     stroke: none !important;
 }
 
+.cluster:nth-child(10) > * {
+    fill: rgb(255, 236, 166) !important;
+}
+
+.cluster:nth-child(9) > * {
+    fill: rgb(240, 218, 139) !important;
+}
+
+.cluster:nth-child(8) > * {
+    fill: rgb(255, 200, 0) !important;
+}
+
+.cluster:nth-child(7) > * {
+    fill: rgb(255, 221, 99) !important;
+}
+
+.cluster:nth-child(6) > * {
+    fill: rgb(248, 205, 47) !important;
+}
+
 .cluster:nth-child(5) > * {
-    fill: #FEF9E7 !important;
+    fill: #ffdd63 !important;
 }
 
 .cluster:nth-child(4) > * {
-    fill: #FCF3CF !important;
+    fill: rgba(255, 208, 0, 0.829) !important;
 }
 
 .cluster:nth-child(3) > * {
-    fill: #F9E79F !important;
+    fill: rgb(249, 231, 159) !important;
 }
 
 .cluster:nth-child(2) > * {
-    fill: #F4D03F !important;
+    fill: #f4d03fef !important;
 }
 
 .cluster:nth-child(1) > * {
-    fill: #D4AC0D !important;
+    fill: #ffcc00 !important;
 }
 
 .goalStyle ellipse {

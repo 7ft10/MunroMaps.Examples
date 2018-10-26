@@ -9,7 +9,7 @@
     }).on('mouseup', function (e) {
       isHandlerDragging = false
     }).on('mousemove', function (e) {
-      if (!isHandlerDragging) return false
+      if (! isHandlerDragging)return false
       resizeFirstBox((e.clientX - $('.handler').parent('.wrapper').offset().left - 8) + 'px')
     })
     resizeFirstBox('35%')
@@ -18,14 +18,14 @@
   function convertSVGTo (svg, type) {
     if (typeof window.XMLSerializer != 'undefined') {
       var svgData = (new XMLSerializer()).serializeToString(svg)
-    } else if (typeof svg.xml != 'undefined') {
+    }else if (typeof svg.xml != 'undefined') {
       var svgData = svg.xml
     }
-    if (!svgData.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
-      svgData = svgData.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"')
+    if (! svgData.match(/^ < svg[^ > ] + xmlns = "http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+      svgData = svgData.replace(/^ < svg/, '<svg xmlns="http://www.w3.org/2000/svg"')
     }
-    if (!svgData.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
-      svgData = svgData.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"')
+    if (! svgData.match(/^ < svg[^ > ] + "http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
+      svgData = svgData.replace(/^ < svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"')
     }
     svgData = '<?xml version="1.0" standalone="no"?>\r\n' + svgData
     switch (type) {
@@ -76,31 +76,43 @@
     $('#graph > svg').append(text)
   }
 
-  function fixGraphAfterRender(svgCode, bindFunctions) {    
+  function fixGraphAfterRender (svgCode, bindFunctions) {
     $('#graph').html(svgCode).css('max-width', '')
     var viewport = $('#graph').attr('viewbox').split(' ')
-    $('#graph, #graph > svg').css('height', viewport[3]).css('width', viewport[2])
-    createHeader()      
+    $('#graph, #graph > svg').css('height', viewport[3] * 1.1).css('width', viewport[2] * 1.1)
+    createHeader()
   }
 
   function initializeMap () {
+    var config = {
+      startOnLoad: true,
+      theme: 'neutral',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    }
+
     $.get('munro.css', function (munroCss) {
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'neutral',
-        themeCSS: munroCss,
-        flowchart: {
-          useMaxWidth: true,
-          htmlLabels: true,
-          curve: 'basis'
-        }
-      })
+      mermaid.initialize($.extend(config, {themeCSS: munroCss }))
       function onchange () {
         $('#graph > *, #dgraph').remove()
-        mermaid.render('graph', $('#definition').text().trim(), fixGraphAfterRender)
+        mermaid.render('graph', $('#definition').text().trim().replace(/\\n/g, '<br/>'), fixGraphAfterRender)
       }
-      $('#definition').on('input', onchange).load('Example1/example1.map', onchange)
-      $('#title').on('input', onchange)
+      function onstylechange () {
+        var additionalStyle = $('#additionalStyle').text()
+        if (additionalStyle && additionalStyle.length > 0) {
+          $('#graph > *, #dgraph').remove()
+          mermaid.initialize($.extend(config, {themeCSS: munroCss + ' ' + additionalStyle }))
+        }
+        onchange()
+      }
+      // var file = 'Example1/example1'; 
+      var file = 'WMCoachingPlan/version_0_1'
+      $('#definition, #title').on('input', onchange)
+      $('#definition').load(file + '.map', onchange)
+      $('#additionalStyle').on('input', onstylechange).load(file + '.css', onstylechange)
     })
   }
 

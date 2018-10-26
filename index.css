@@ -7,6 +7,11 @@ pre {
     padding: 5px;
     font-size: 9pt;
 }
+label {
+    color: rgb(229, 255, 0);
+    padding-left: 5px;
+    text-decoration: underline;
+}
 body {
     margin: 10px;
 }
