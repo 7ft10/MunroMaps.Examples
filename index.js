@@ -1,30 +1,37 @@
-;(function () {
-  function setUpBoxResizing () {
-    function resizeFirstBox (to) {
-      $('.handler').parent('.wrapper').find('.box:first').css('width', to).css('flexGrow', 0)
+(function () {
+  function setUpBoxResizing() {
+    function resizeFirstBox(to) {
+      $('.handler')
+        .parent('.wrapper')
+        .find('.box:first')
+        .css('width', to)
+        .css('flexGrow', 0)
     }
     var isHandlerDragging = false
     $(document).on('mousedown', function (e) {
       isHandlerDragging = e.target === $('.handler')[0]
-    }).on('mouseup', function (e) {
-      isHandlerDragging = false
-    }).on('mousemove', function (e) {
-      if (! isHandlerDragging)return false
-      resizeFirstBox((e.clientX - $('.handler').parent('.wrapper').offset().left - 8) + 'px')
     })
-    resizeFirstBox('35%')
+      .on('mouseup', function (e) {
+        isHandlerDragging = false
+      })
+      .on('mousemove', function (e) {
+        if (!isHandlerDragging) 
+          return false
+        resizeFirstBox((e.clientX - $('.handler').parent('.wrapper').offset().left - 8) + 'px')
+      })
+    resizeFirstBox('0%')
   }
 
-  function convertSVGTo (svg, type) {
+  function convertSVGTo(svg, type) {
     if (typeof window.XMLSerializer != 'undefined') {
       var svgData = (new XMLSerializer()).serializeToString(svg)
-    }else if (typeof svg.xml != 'undefined') {
+    } else if (typeof svg.xml != 'undefined') {
       var svgData = svg.xml
     }
-    if (! svgData.match(/^ < svg[^ > ] + xmlns = "http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+    if (!svgData.match(/^ < svg[^ > ] + xmlns = "http\:\/\/www\.w3\.org\/2000\/svg"/)) {
       svgData = svgData.replace(/^ < svg/, '<svg xmlns="http://www.w3.org/2000/svg"')
     }
-    if (! svgData.match(/^ < svg[^ > ] + "http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
+    if (!svgData.match(/^ < svg[^ > ] + "http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
       svgData = svgData.replace(/^ < svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"')
     }
     svgData = '<?xml version="1.0" standalone="no"?>\r\n' + svgData
@@ -37,38 +44,40 @@
     }
   }
 
-  function setUpExportToSVG () {
-    $('#exportToSVG').on('click', function () {
-      var svg = $('#graph > svg')[0]
-      var a = document.createElement('a')
-      a.download = 'munromap.svg'
-      a.href = convertSVGTo(svg, 'SVG')
-      a.click()
-    })
-  }
-
-  function setUpExportToPNG () {
-    $('#exportToPNG').on('click', function () {
-      var svg = $('#graph > svg')[0]
-      var img = document.createElement('img')
-      img.setAttribute('src', convertSVGTo(svg, 'PNG'))
-      img.onload = function () {
-        var canvas = document.createElement('canvas')
-        var svgSize = svg.getBoundingClientRect()
-        canvas.width = svgSize.width
-        canvas.height = svgSize.height
-        var ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0)
-        var imgsrc = canvas.toDataURL('image/png')
+  function setUpExportToSVG() {
+    $('#exportToSVG')
+      .on('click', function () {
+        var svg = $('#graph > svg')[0]
         var a = document.createElement('a')
-        a.download = 'munromap.png'
-        a.href = imgsrc
+        a.download = 'munromap.svg'
+        a.href = convertSVGTo(svg, 'SVG')
         a.click()
-      }
-    })
+      })
   }
 
-  function createHeader () {
+  function setUpExportToPNG() {
+    $('#exportToPNG')
+      .on('click', function () {
+        var svg = $('#graph > svg')[0]
+        var img = document.createElement('img')
+        img.setAttribute('src', convertSVGTo(svg, 'PNG'))
+        img.onload = function () {
+          var canvas = document.createElement('canvas')
+          var svgSize = svg.getBoundingClientRect()
+          canvas.width = svgSize.width
+          canvas.height = svgSize.height
+          var ctx = canvas.getContext('2d')
+          ctx.drawImage(img, 0, 0)
+          var imgsrc = canvas.toDataURL('image/png')
+          var a = document.createElement('a')
+          a.download = 'munromap.png'
+          a.href = imgsrc
+          a.click()
+        }
+      })
+  }
+
+  function createHeader() {
     var text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
     text.setAttributeNS(null, 'x', 10)
     text.setAttributeNS(null, 'y', 40)
@@ -76,15 +85,20 @@
     $('#graph > svg').append(text)
   }
 
-  function fixGraphAfterRender (svgCode, bindFunctions) {
-    $('#graph').html(svgCode).css('max-width', '')
-    var viewport = $('#graph').attr('viewbox').split(' ')
+  function fixGraphAfterRender(svgCode, bindFunctions) {
+    $('#graph')
+      .html(svgCode)
+      .css('max-width', '')
+    var viewport = $('#graph')
+      .attr('viewbox')
+      .split(' ')
     $('#graph, #graph > svg').css('height', viewport[3] * 1.1).css('width', viewport[2] * 1.1)
     createHeader()
   }
 
-  function initializeMap () {
+  function initializeMap() {
     var config = {
+      logLevel: 1,
       startOnLoad: true,
       theme: 'neutral',
       flowchart: {
@@ -95,31 +109,36 @@
     }
 
     $.get('munro.css', function (munroCss) {
-      mermaid.initialize($.extend(config, {themeCSS: munroCss }))
-      function onchange () {
+      mermaid.initialize($.extend(config, {themeCSS: munroCss}))
+      function onchange() {
         $('#graph > *, #dgraph').remove()
         mermaid.render('graph', $('#definition').text().trim().replace(/\\n/g, '<br/>'), fixGraphAfterRender)
       }
-      function onstylechange () {
+      function onstylechange() {
         var additionalStyle = $('#additionalStyle').text()
         if (additionalStyle && additionalStyle.length > 0) {
           $('#graph > *, #dgraph').remove()
-          mermaid.initialize($.extend(config, {themeCSS: munroCss + ' ' + additionalStyle }))
+          mermaid.initialize($.extend(config, {
+            themeCSS: munroCss + ' ' + additionalStyle
+          }))
         }
         onchange()
       }
-      // var file = 'Example1/example1'; 
+      // var file = 'Example1/example1';
       var file = 'WMCoachingPlan/version_0_1'
       $('#definition, #title').on('input', onchange)
       $('#definition').load(file + '.map', onchange)
-      $('#additionalStyle').on('input', onstylechange).load(file + '.css', onstylechange)
+      $('#additionalStyle')
+        .on('input', onstylechange)
+        .load(file + '.css', onstylechange)
     })
   }
 
-  $(document).ready(function () {
-    setUpBoxResizing()
-    initializeMap()
-    setUpExportToPNG()
-    setUpExportToSVG()
-  })
-})()
+  $(document)
+    .ready(function () {
+      setUpBoxResizing()
+      initializeMap()
+      setUpExportToPNG()
+      setUpExportToSVG()
+    })
+})();
