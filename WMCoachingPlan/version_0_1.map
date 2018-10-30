@@ -2,7 +2,7 @@ graph BT
 
 %% ---------- Horizons --------------
 subgraph Now Horizon
-    Now(-The Now House-)
+    Now(-The Now House-) 
 end
 subgraph horizon 1
     People_UXDeployments((UX Deployments))
