@@ -17,44 +17,12 @@ foreignObject > div:hover {
     stroke: none !important;
 }
 
-.cluster:nth-child(10) > * {
-    fill: rgb(255, 236, 166) !important;
+.cluster:nth-child(odd) > rect {
+    fill: whitesmoke !important;
 }
 
-.cluster:nth-child(9) > * {
-    fill: rgb(240, 218, 139) !important;
-}
-
-.cluster:nth-child(8) > * {
-    fill: rgb(255, 200, 0) !important;
-}
-
-.cluster:nth-child(7) > * {
-    fill: rgb(255, 221, 99) !important;
-}
-
-.cluster:nth-child(6) > * {
-    fill: rgb(248, 205, 47) !important;
-}
-
-.cluster:nth-child(5) > * {
-    fill: #ffdd63 !important;
-}
-
-.cluster:nth-child(4) > * {
-    fill: rgba(255, 208, 0, 0.829) !important;
-}
-
-.cluster:nth-child(3) > * {
-    fill: rgb(249, 231, 159) !important;
-}
-
-.cluster:nth-child(2) > * {
-    fill: #f4d03fef !important;
-}
-
-.cluster:nth-child(1) > * {
-    fill: #ffcc00 !important;
+.cluster:nth-child(even) > rect {
+    fill: white !important;
 }
 
 .goalStyle ellipse {
@@ -90,4 +58,23 @@ foreignObject > div:hover {
 .nowStyle foreignObject > div {
     position: relative;
     top: 60px;
+}
+/*
+circle + * foreignObject {
+    width: 80px !important;
+    height: 40px !important;
+    vertical-align: middle;
+}
+*/
+polygon + * foreignObject > div {
+    height: 100px !important;
+    width: 110px !important;
+    vertical-align: middle;
+    position: absolute;
+    top: 5px;    
+    left: 0px;
+}
+
+foreignObject > div {    
+    font-size: 9pt;
 }

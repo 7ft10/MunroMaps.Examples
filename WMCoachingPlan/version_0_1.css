@@ -1,11 +1,3 @@
-foreignObject > div {
-    /*
-    position: absolute;
-    left: -10px;
-    top: -5px;
-    */
-}
-
 [id^=People] > * {
     fill: cyan !important;
 }
@@ -24,4 +16,8 @@ foreignObject > div {
 
 [id^=Milestone] > * {
     fill: rgb(255, 38, 0) !important;
+}
+
+[id$=Stream] > * {
+    transform: scale(0.75);
 }

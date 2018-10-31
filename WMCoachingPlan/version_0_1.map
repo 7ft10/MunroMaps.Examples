@@ -5,119 +5,132 @@ subgraph Now Horizon
     Now(-The Now House-) 
 end
 subgraph horizon 1
-    People_UXDeployments((UX Deployments))
-    People_OverTheFence((Remove Over\nthe Fence))
+    Agility_DOD((New DOD))
+
+    People_UXDeployments((UX\nDeployments))
+
+    Practices_MeetingAgendas((Meeting\nAgendas))
 
     Tools_SingleWorkFlow((Single\nWorkflow))
     Tools_IssueTypes((Single set\nof Issue Types))
-end
-subgraph horizon 2
 
-    People_UXupskillBA((UX to\nupskill BA))
-    People_TeamWork((Encourage\nTeam Work))
-
-    Tools_VersionsDefined((Versions\nDefined))    
-
-    Practices_EvolveBot((Evolve\nthe bot))
-    Agility_Personas((Project Personas\nare known\nand used))
-    Practices_CodeReviews((Code\nReviews))
-
-    Milestone1>M1: Worflow\nUpdated]
-end
-subgraph horizon 3
-
-    Practices_PreWorkHuddles((Pre-Work\nHuddles))
-
-    Agility_DOD((New DOD))
-    Agility_Showcases((Get better\nshowcases))
-
-    People_IterationReportsAutomated((Iteration\nReports\nAutomated))
-
-    Agility_HasEpics((Each project\nhas epics))
+    Milestone1>M1: Jira\nStandardised]
 end 
-subgraph horizon 4
-    Milestone2>M2: New WOW\nBooklet]
+subgraph horizon 2    
+    Agility_Showcases((Get better\nshowcases))
+    Agility_LanguageUpdate((Agility\nLangugage\nUpdate))
 
     People_IterationLength((2 week\nIterations))
-
-    Tools_Metrics((Team\nMetrics))
-
-    Agility_LanguageUpdate((Agility\nLangugage\nUpdate))
-end 
-subgraph horizon 5    
     People_RemoveChecklists((Checklists to\nbecome DOD))
-   
+
+    Practices_CodeReviews((Code\nReviews))
+    Practices_PreWorkHuddles((Pre-Work\nHuddles))        
+    Practices_CalendarUsage((Improve\nCalendar Usage))
+
+    Milestone2>M2: Standard\nWork]
+    Milestone3>M3: Waste\nIdentified]
+end 
+subgraph horizon 3     
+    Agility_Personas((Project Personas\nare known\nand used))
+    Agility_HasEpics((Each project\nhas epics))        
+        
+    People_UXupskillBA((UX to\nupskill BA))
+    People_TeamWork((Encourage\nTeam Work))  
+    People_IterationReportsAutomated((Iteration\nReports\nAutomated))
+
+    Practices_EvolveBot((Evolve\nthe bot))
+    People_OverTheFence((Remove Over\nthe Fence))
+
+    Milestone4>M4: Level up!]
+end 
+subgraph horizon 4      
+    Agility_INVEST((INVEST\nprinciples))        
+
+    Tools_VersionsDefined((Versions\nDefined))        
+end 
+subgraph horizon 5  
     Practices_DevOps((DevOps\nMentality))
 
-    Agility_INVEST((INVEST\nprinciples))    
+    Tools_Metrics((Team\nMetrics))        
 end 
 subgraph Goal Horizon
     Goal(-fa:fa-flag-)
 end
 subgraph legend
-    People[People\nStream]
-    Tools[Tools\nStream] 
-    Practices[Practices\nStream]
-    Agility[Agility\nPractices]
-    Milestones[Milestones]
+    PeopleStream((People\nStream))
+    ToolsStream((Tools\nStream))
+    PracticesStream((Practices\nStream))
+    AgilityStream((Agility\nPractices))
+    MilestonesStream>Milestones]
 end
 
 %% -------- Link Initiatives -----------
 
-%% People Stream 
-Now --> People_UXDeployments
-Now --> People_OverTheFence
-Now --> People_IterationLength
+%% Horizon 1
 
-People_UXDeployments --> People_UXupskillBA
-People_OverTheFence --> People_TeamWork
-People_IterationLength --> People_IterationReportsAutomated
-People_IterationReportsAutomated --> People_RemoveChecklists
-
-People_UXupskillBA --> Goal
-People_TeamWork --> People_UXupskillBA 
-People_RemoveChecklists --> Goal 
-
-%% Tools Stream 
 Now --> Tools_SingleWorkFlow
-
-Tools_SingleWorkFlow --> Tools_IssueTypes
-Tools_IssueTypes --> Tools_VersionsDefined
-Tools_VersionsDefined --> Tools_Metrics
-
-Tools_Metrics --> Goal 
-
-%% Practices Stream 
-Now --> Practices_PreWorkHuddles
-
-Practices_PreWorkHuddles --> Practices_CodeReviews
-Practices_CodeReviews --> Practices_EvolveBot
-Practices_PreWorkHuddles --> Practices_DevOps
-
-Practices_EvolveBot -->  Goal
-Practices_DevOps --> Goal 
-
-%% Agility Practices
-Now --> Agility_Showcases
+Now --> Tools_IssueTypes
 Now --> Agility_DOD
-Now --> Agility_LanguageUpdate
+Now --> People_UXDeployments
 
-Agility_Showcases --> People_IterationReportsAutomated
-Agility_DOD --> People_RemoveChecklists
-Agility_DOD --> Agility_Personas
-Agility_Personas --> Agility_HasEpics
-Agility_HasEpics --> Agility_INVEST
+Agility_DOD --> Agility_Showcases
+Agility_DOD --> Practices_MeetingAgendas
+Agility_DOD --> Practices_PreWorkHuddles
 
-Agility_LanguageUpdate --> Goal 
-Agility_INVEST --> Goal
+People_UXDeployments --> People_IterationLength
 
-%% ---------- Milestones ---------------
 Tools_SingleWorkFlow -.-> Milestone1
 Tools_IssueTypes -.-> Milestone1
-Agility_DOD -.-> Milestone1
 
-People_RemoveChecklists -.-> Milestone2
-Agility_LanguageUpdate -.-> Milestone2
+%% Horizon 2
+
+Agility_Showcases --> Agility_LanguageUpdate
+
+Practices_MeetingAgendas --> Practices_CalendarUsage
+Practices_PreWorkHuddles --> Practices_CodeReviews
+
+People_IterationLength --> People_RemoveChecklists
+People_IterationLength --> People_IterationReportsAutomated
+
+Agility_Showcases -.-> Milestone2
+Practices_MeetingAgendas -.-> Milestone2
+Practices_PreWorkHuddles -.-> Milestone2
+
+Practices_CalendarUsage -.-> Milestone3
+People_RemoveChecklists -.-> Milestone3
+
+%% Horizon 3
+
+Agility_LanguageUpdate --> Agility_Personas
+Agility_LanguageUpdate --> Tools_VersionsDefined
+
+Practices_CodeReviews --> Practices_EvolveBot
+People_IterationReportsAutomated --> People_TeamWork
+
+Agility_Personas --> Agility_HasEpics
+
+Agility_HasEpics --> Agility_INVEST
+
+Practices_EvolveBot --> People_OverTheFence
+People_TeamWork --> People_OverTheFence
+People_UXupskillBA --> Practices_DevOps
+
+People_OverTheFence --> People_UXupskillBA
+
+Agility_HasEpics -.-> Milestone4
+Practices_EvolveBot -.-> Milestone4
+People_OverTheFence -.-> Milestone4
+
+%% Horizon 4
+
+Agility_INVEST --> Practices_DevOps
+Tools_VersionsDefined --> Tools_Metrics
+
+%% Horizon 5
+
+Practices_DevOps --> Goal
+Tools_Metrics --> Goal
+
 
 %% --------- Hyperlinks ----------------
 click Goal "https://docs.munromaps.com.au/strategy/the-mechanics/smart-goal"

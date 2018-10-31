@@ -1,6 +1,6 @@
-(function () {
-  function setUpBoxResizing() {
-    function resizeFirstBox(to) {
+;(function () {
+  function setUpBoxResizing () {
+    function resizeFirstBox (to) {
       $('.handler')
         .parent('.wrapper')
         .find('.box:first')
@@ -15,14 +15,14 @@
         isHandlerDragging = false
       })
       .on('mousemove', function (e) {
-        if (!isHandlerDragging) 
+        if (!isHandlerDragging)
           return false
         resizeFirstBox((e.clientX - $('.handler').parent('.wrapper').offset().left - 8) + 'px')
       })
     resizeFirstBox('0%')
   }
 
-  function convertSVGTo(svg, type) {
+  function convertSVGTo (svg, type) {
     if (typeof window.XMLSerializer != 'undefined') {
       var svgData = (new XMLSerializer()).serializeToString(svg)
     } else if (typeof svg.xml != 'undefined') {
@@ -44,7 +44,7 @@
     }
   }
 
-  function setUpExportToSVG() {
+  function setUpExportToSVG () {
     $('#exportToSVG')
       .on('click', function () {
         var svg = $('#graph > svg')[0]
@@ -55,7 +55,7 @@
       })
   }
 
-  function setUpExportToPNG() {
+  function setUpExportToPNG () {
     $('#exportToPNG')
       .on('click', function () {
         var svg = $('#graph > svg')[0]
@@ -77,28 +77,37 @@
       })
   }
 
-  function createHeader() {
+  function createHeader () {
     var text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
     text.setAttributeNS(null, 'x', 10)
     text.setAttributeNS(null, 'y', 40)
     text.appendChild(document.createTextNode($('#title').text()))
-    $('#graph > svg').append(text)
+    return text;    
   }
 
-  function fixGraphAfterRender(svgCode, bindFunctions) {
+  function fixGraphAfterRender (svgCode, bindFunctions) {
+    $('#dgraph').remove()
     $('#graph')
-      .html(svgCode)
+      .html(svgCode)        
       .css('max-width', '')
     var viewport = $('#graph')
       .attr('viewbox')
       .split(' ')
     $('#graph, #graph > svg').css('height', viewport[3] * 1.1).css('width', viewport[2] * 1.1)
-    createHeader()
+    $('svg circle').attr('r', '40') // standardize all the circle sizes 
+    $('svg polygon').attr('points', '-20,20 130,20 130,-40 -20,-40 0,-10') // standardize all the milestones 
+    $('#graph > svg')
+      .append(createHeader())
+
+    $('text[text()=legend]').text("What a legend");
+
+    var newSvg = $("#graph").html();
+    $("#graph").html("").html(newSvg); // refresh the svg
   }
 
-  function initializeMap() {
+  function initializeMap () {
     var config = {
-      logLevel: 1,
+      // logLevel: 1,
       startOnLoad: true,
       theme: 'neutral',
       flowchart: {
@@ -110,11 +119,11 @@
 
     $.get('munro.css', function (munroCss) {
       mermaid.initialize($.extend(config, {themeCSS: munroCss}))
-      function onchange() {
+      function onchange () {
         $('#graph > *, #dgraph').remove()
         mermaid.render('graph', $('#definition').text().trim().replace(/\\n/g, '<br/>'), fixGraphAfterRender)
       }
-      function onstylechange() {
+      function onstylechange () {
         var additionalStyle = $('#additionalStyle').text()
         if (additionalStyle && additionalStyle.length > 0) {
           $('#graph > *, #dgraph').remove()
@@ -124,7 +133,7 @@
         }
         onchange()
       }
-      // var file = 'Example1/example1';
+      // var file = 'Example1/example1'
       var file = 'WMCoachingPlan/version_0_1'
       $('#definition, #title').on('input', onchange)
       $('#definition').load(file + '.map', onchange)
@@ -141,4 +150,4 @@
       setUpExportToPNG()
       setUpExportToSVG()
     })
-})();
+})()
