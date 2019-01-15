@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="Description" content="Munro Maps - An Agile way to Road
+            Map." />
+        <link rel="icon" href="../favicon.ico">
+        <link rel="manifest" href="../manifest.json">
+        <link rel="stylesheet" href="../site.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Munro Map - Example 2</title>
+        <style>
+        /* Critical Style */
+            html {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            height: calc(100% - 10px);
+            overflow: hidden;
+        }
+
+        header {
+            padding-top: 10px;
+            padding-left: 10px;
+            background-color: black;
+            color: white;
+            height: 32px;
+        }
+        
+        main {
+            flex: 1;
+            margin: auto;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            background-color: white;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+        }
+    </style>
+    </head>
+
+    <body onload="init()">
+        <header>
+            <section class="header-logo">
+                <a href="../">
+                    <img src="../logo-white.png" width="19" height="19"
+                        alt="Munro Maps" />
+                    Munro Maps
+                </a>
+            </section>
+            <section class="header-action">
+                <nav>
+                    <ul>
+                        <li><a class="clickable" id="wordViewer"
+                                href="resources/Coaching Plan - Dec 18.docx">DOCX</a></li>
+                        <li><a class="clickable" id="editJSON">JSON</a></li>
+                        <li><a class="clickable" id="exportPNG">PNG</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </header>
+        <main>
+            <section class="app" role="application">
+                Loading...
+            </section>
+            <section class="flyout" role="document">
+                <pre id="jsonEditor" contenteditable="true"></pre>
+                <div class="errorsPanel"></div>
+                <div class="buttonPanel">
+                    <button id="jsonEditorCloseButton">
+                        Close
+                    </button>
+                    <button id="jsonEditorExportButton">
+                        Export
+                    </button>
+                    <label for="jsonEditorReindex">Reindex?</label>
+                    <input id="jsonEditorReindex" type="checkbox"
+                        value="Reindex?" />
+                </div>
+            </section>
+        </main>
+        <footer>
+            <span>
+                &copy; 7ft10 2018-2019.
+            </span>
+        </footer>
+        <section id="app-workspace" style="display:none;">
+            <script type="text/template" id="modal-template-initiative"
+                src="templates/modal-template-initiative.html">
+            Template loaded dynamically
+        </script>
+            <script type="text/template" id="modal-template-milestone"
+                src="templates/modal-template-milestone.html">
+            Template loaded dynamically
+        </script>
+            <script type="text/template" id="modal-template-decisionpoint"
+                src="templates/modal-template-decisionpoint.html">
+            Template loaded dynamically
+        </script>
+            <script type="text/template" id="modal-template-endpoint"
+                src="templates/modal-template-endpoint.html">
+            Template loaded dynamically
+        </script>
+            <script type="text/template" id="modal-template-goal"
+                src="templates/modal-template-goal.html">
+            Template loaded dynamically
+        </script>
+            <script type="text/template" id="modal-template-now"
+                src="templates/modal-template-now.html">
+            Template loaded dynamically
+        </script>
+        </section>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+        <script
+            src="https://unpkg.com/d3-template-plugin/build/d3-template.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/ajv/6.6.2/ajv.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+        <script src="./custom.js"></script>
+        <script>
+        function init() {
+            require.config({ 
+                waitSeconds : 30
+            });
+            requirejs.onError = function (err) {
+                console.error(err);
+                alert(err);
+            };
+            d3.json("SRGCoachPlanv1_0_MunroMap.json").then(function (map) {
+                requirejs(['../munromapapp.js'], function () {
+                    window.MunroMapApp.Start({
+                        map: map,
+                        reindexNodes: d3.select("#jsonEditorReindex").property("checked")
+                    }).then(function () {
+                        customEventHandlers();
+                    }).catch(function(error){
+                        throw error;
+                    });
+                });
+            }).catch(function (err) {
+                alert(err);
+            })
+        }
+/*
+                if (window.Worker) {
+                    var myWorker = new Worker('../worker.js');
+                    myWorker.onmessage = function (e) {
+                        console.log('Message received from worker: ' + e.data);
+                        //myWorker.terminate();
+                        return Promise.resolve();
+                    }
+                    myWorker.postMessage([3, 8]);
+                    console.log('Message posted to worker');
+                }
+                */
+    </script>
+    </body>
+
+</html>

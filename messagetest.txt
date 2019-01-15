@@ -1,0 +1,18 @@
+https://web-push-codelab.glitch.me/
+
+{
+    "body" : "Go to documentation", 
+    "actions": [
+        {
+            "action": "coffee-action",
+            "title": "Coffee"
+        },
+        {
+            "action": "doughnut-action",
+            "title": "Doughnut"
+        }
+    ],
+    "data" : { "url": "https://munromaps.com.au" } 
+}
+
+{"endpoint":"https://fcm.googleapis.com/fcm/send/dVSM5UxCq4M:APA91bFjkgegj6Lvsum_7WlzO_30bRI9gn2xmfo5_k0G4jUUeG9uzPP-sTU9N8syFYhnHJ_xzbLQkW7MUrYJht-BwpumgSikAvuOJhYyNZtq-V4Z8ffJAVOJiD0eKAdC7XdNPINArhJr","expirationTime":null,"keys":{"p256dh":"BJcmhrTFPn4T6kQlEqpfKZY1R8L94WAXSsicMsSxayJTxKNSgjIdO4vlypC4aJi_1Nb1kqLMF3A9qEW6zjp1TSQ","auth":"cTzhdgJbxONcrjP55w5CuQ"}}

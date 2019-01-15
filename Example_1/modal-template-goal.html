@@ -1,0 +1,28 @@
+﻿<div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-body">
+        <h1>The Goal!</h1>
+        <div class="row">
+            <div class="column">
+                <div><label>Id:</label> <span>{{d.id}}</span></div>
+                <div><label>Name:</label> <span>{{d.name}}</span></div>
+                <div data-if="{{d.successors && d.predecessors.length === 0}}">
+                    <div>
+                        <label>Predecessors:</label><span>No Predecessors</span>
+                    </div>
+                </div>
+                <div data-if="{{d.predecessors && d.predecessors.length > 0}}">
+                    <div>
+                        <label>Predecessors:</label>
+                        <ul data-repeat="{{d.predecessors}}">
+                            <li data-index="{{i}}">{{d.name}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                {{d.details}}
+            </div>
+        </div>
+    </div>
+</div>

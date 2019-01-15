@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /SRGCoachPlanV1.0/
+Disallow: /Example_1/

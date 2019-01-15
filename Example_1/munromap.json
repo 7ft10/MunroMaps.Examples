@@ -1,0 +1,325 @@
+{
+  "horizons": [
+    {
+      "id": 1,
+      "name": "Now Horizon",
+      "type": "horizon"
+    },
+    {
+      "id": 2,
+      "name": "Horizon 1",
+      "type": "horizon"
+    },
+    {
+      "id": 3,
+      "name": "Horizon 2",
+      "type": "horizon"
+    },
+    {
+      "id": 4,
+      "name": "Horizon 3",
+      "type": "horizon"
+    },
+    {
+      "id": 5,
+      "name": "Horizon 4",
+      "type": "horizon"
+    },
+    {
+      "id": 6,
+      "name": "Horizon 5",
+      "type": "horizon"
+    },
+    {
+      "id": 7,
+      "name": "Goal Horizon",
+      "type": "horizon"
+    }
+  ],
+  "nodes": [
+    {
+      "id": 1,
+      "name": "The Now House",
+      "details": "New DOD",
+      "horizon": 1,
+      "type": "now",
+      "links": [],
+      "size": "M"
+    },
+    {
+      "id": 2,
+      "category": "Agility",
+      "name": "New DOD",
+      "details": "New DOD",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [ 1 ],
+      "size": "M"
+    },
+    {
+      "id": 4,
+      "category": "Practices",
+      "name": "Meeting Agendas",
+      "details": "Meeting Agendas",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [ 2 ],
+      "size": "M"
+    },
+    {
+      "id": 5,
+      "category": "Tools",
+      "name": "Single Workflow",
+      "details": "Single Workflow",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [ 1 ],
+      "size": "M"
+    },
+    {
+      "id": 7,
+      "name": "Jira Standardisation",
+      "details": "Jira Standardisation",
+      "horizon": 2,
+      "type": "milestone",
+      "links": [ 5, 6 ],
+      "size": "M"
+    },
+    {
+      "id": 6,
+      "category": "Tools",
+      "name": "Single Set Of Issue Types",
+      "details": "Single Set Of Issue Types",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [ 1 ],
+      "size": "M"
+    },
+    {
+      "id": 3,
+      "category": "People",
+      "name": "UX Deployments",
+      "details": "UX Deployments",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [ 1 ],
+      "size": "M"
+    },
+    {
+      "id": 9,
+      "category": "Agility",
+      "name": "Language Update",
+      "details": "Language Update",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 17 ],
+      "size": "M"
+    },
+    {
+      "id": 8,
+      "category": "Agility",
+      "name": "Get Better Showcases",
+      "details": "Get Better Showcases",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 9 ],
+      "size": "M"
+    },
+    {
+      "id": 15,
+      "name": "Standard Work",
+      "details": "Standard Work",
+      "horizon": 3,
+      "type": "milestone",
+      "links": [ 4, 8, 13 ],
+      "size": "M"
+    },
+    {
+      "id": 13,
+      "category": "Practices",
+      "name": "Pre-Work Huddles",
+      "details": "Pre-Work Huddles",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 12 ],
+      "size": "M"
+    },
+    {
+      "id": 12,
+      "category": "Practices",
+      "name": "Code Reviews",
+      "details": "Code Reviews",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 2 ],
+      "size": "M"
+    },
+    {
+      "id": 14,
+      "category": "Practices",
+      "name": "Calendar Usage",
+      "details": "Calendar Usage",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 4 ],
+      "size": "M"
+    },
+    {
+      "id": 16,
+      "name": "Waste Identified",
+      "details": "Waste Identified",
+      "horizon": 3,
+      "type": "milestone",
+      "links": [ 11, 14 ],
+      "size": "M"
+    },
+    {
+      "id": 11,
+      "category": "People",
+      "name": "Remove Checklists",
+      "details": "Remove Checklists",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 10 ],
+      "size": "M"
+    },
+    {
+      "id": 10,
+      "category": "People",
+      "name": "2 Week Iterations",
+      "details": "2 Week Iterations",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [ 3 ],
+      "size": "S"
+    },
+    {
+      "id": 17,
+      "category": "Agility",
+      "name": "Project Personas",
+      "details": "Personas are known and used",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 9 ],
+      "size": "M"
+    },
+    {
+      "id": 18,
+      "category": "Agility",
+      "name": "Project Epics",
+      "details": "At least 1 Epic",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 17 ],
+      "size": "XS"
+    },
+    {
+      "id": 24,
+      "name": "Level Up",
+      "details": "Level Up",
+      "horizon": 4,
+      "type": "milestone",
+      "links": [ 18, 22, 23 ],
+      "size": "M"
+    },
+    {
+      "id": 22,
+      "category": "Practices",
+      "name": "Evolve The Bot",
+      "details": "Evolve The Bot",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 12 ],
+      "size": "M"
+    },
+    {
+      "id": 23,
+      "category": "People",
+      "name": "Remove Over The Fence",
+      "details": "Remove Over The Fence",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 20, 22 ],
+      "size": "M"
+    },
+    {
+      "id": 20,
+      "category": "People",
+      "name": "Team Work",
+      "details": "Encourage Team Work",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 21 ],
+      "size": "XL"
+    },
+    {
+      "id": 19,
+      "category": "People",
+      "name": "UX Up-Skill To BA",
+      "details": "UX Up-Skill To BA",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 23 ],
+      "size": "L"
+    },
+    {
+      "id": 21,
+      "category": "People",
+      "name": "Iteration Reports Automated",
+      "details": "Iteration Reports Automated",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [ 10 ],
+      "size": "M"
+    },
+    {
+      "id": 25,
+      "category": "Agility",
+      "name": "INVEST Principles",
+      "details": "INVEST Principles",
+      "horizon": 5,
+      "type": "initiative",
+      "links": [ 17 ],
+      "size": "M"
+    },
+    {
+      "id": 26,
+      "category": "Tools",
+      "name": "Versions Defined",
+      "details": "Versions Defined",
+      "horizon": 5,
+      "type": "initiative",
+      "links": [ 5, 6, 9 ],
+      "size": "M"
+    },
+    {
+      "id": 27,
+      "category": "Practices",
+      "name": "DevOps",
+      "details": "DevOps",
+      "horizon": 6,
+      "type": "initiative",
+      "links": [ 18, 25 ],
+      "size": "M"
+    },
+    {
+      "id": 28,
+      "category": "Tools",
+      "name": "Team Metrics",
+      "details": "Team Metrics",
+      "horizon": 6,
+      "type": "initiative",
+      "links": [ 26 ],
+      "size": "M"
+    },
+    {
+      "id": 99,
+      "name": "Goal",
+      "details": "Goal",
+      "horizon": 7,
+      "type": "goal",
+      "links": [ 27, 28 ],
+      "size": "M"
+    }
+  ]
+}

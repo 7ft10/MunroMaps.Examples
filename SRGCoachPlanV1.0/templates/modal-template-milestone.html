@@ -1,0 +1,45 @@
+﻿<div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-body">
+        <svg style="float: left; height: 34px; width: 34px;">
+            <defs>
+                <symbol id="milestoneSymbol" viewBox="-30 -30 60 60">
+                    <path d="M-25.98076211353316,-8.660254037844387L-8.660254037844387,-8.660254037844387L-8.660254037844387,-25.98076211353316L8.660254037844387,-25.98076211353316L8.660254037844387,-8.660254037844387L25.98076211353316,-8.660254037844387L25.98076211353316,8.660254037844387L8.660254037844387,8.660254037844387L8.660254037844387,25.98076211353316L-8.660254037844387,25.98076211353316L-8.660254037844387,8.660254037844387L-25.98076211353316,8.660254037844387Z"></path>
+                </symbol>
+            </defs>
+            <g class="node milestone">
+                <use xlink:href="#milestoneSymbol" width="34" height="34" class="milestone symbol" data-category="milestone"></use>
+            </g>
+        </svg>
+        <h1><span>{{d.name}}</span></h1>
+        <div class="row">
+            <div class="column">
+                <p><label>Id:</label> <span>{{d.id}}</span></p>
+                <p><label>Name:</label> <span>{{d.name}}</span></p>
+                <p><label>Horizon:</label> <span>{{d.horizonDetails.name}}</span></p>
+                <p>
+                    <div data-if="{{d.predecessors && d.predecessors.length === 0}}">
+                        <div>
+                            <label>Predecessors:</label><span>No Predecessors</span>
+                        </div>
+                    </div>
+                    <div data-if="{{d.predecessors && d.predecessors.length > 0}}">
+                        <div>
+                            <label>Predecessors:</label>
+                            <ul data-repeat="{{d.predecessors}}">
+                                <li data-index="{{i}}">
+                                    <a href="#" onclick="return window.MunroMapApp.showDialog(this.dataset.nodeid);"
+                                        data-nodeid="{{d.id}}">{{d.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="column" data-html="{{d.details}}">
+                <!--Loaded via data-html-->
+                Loading details...
+            </div>
+        </div>
+    </div>
+</div>

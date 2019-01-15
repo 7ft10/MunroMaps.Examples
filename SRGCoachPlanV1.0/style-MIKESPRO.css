@@ -1,0 +1,76 @@
+﻿@import url('../site.css');
+@import url('../munromapapp.css');
+
+.flyout {
+    background-color: lime;
+    height: 100px;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.app *[data-category="Product Management"] {
+    fill: blue;
+}
+
+.app *[data-category="Delivery & Release"] {
+    fill: darksalmon;
+}
+
+.app *[data-category="Quality Assurance"] {
+    fill: rgb(168, 76, 204);
+}
+
+.app *[data-category="People & Culture"] {
+    fill: rgb(255, 24, 140);
+}
+
+.app *[data-size="xs"] {
+    stroke-width: 1%;
+    stroke: #ccc;
+}
+
+.app *[data-size="s"] {
+    stroke-width: 3%;
+    stroke: #ccc;
+}
+
+.app *[data-size="m"] {
+    stroke-width: 5%;
+    stroke: #ccc;
+}
+
+.app *[data-size="l"] {
+    stroke-width: 8%;
+    stroke: #ccc;
+}
+
+.app *[data-size="xl"] {
+    stroke-width: 13%;
+    stroke: #ccc;
+}
+
+/* Overrides */
+
+.app .svg .horizons .horizon:not(:first-child):not(:last-child) > .horizonRect {
+    fill: white;
+    outline: cyan solid 1px;
+}
+
+.app .svg .horizons .horizon:not(:first-child):not(:last-child) > .horizonRect:hover {
+    opacity: 0.1;
+    fill: blue;
+}
+
+.app .svg .horizons .horizon:first-child > .horizonRect {
+    fill: red;
+}
+
+.app .svg .horizons .horizon:last-child > .horizonRect {
+    fill: red;
+}
+
+main {
+    background-color: white;
+}

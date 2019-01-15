@@ -1,0 +1,70 @@
+﻿<div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <span class="tshirtSize">
+        <span>{{d.size}}</span>
+    </span>
+    <div class="modal-body">
+        <svg style="float: left; height: 34px; width: 34px;">
+            <defs>
+                <symbol id="initiativeSymbol" viewBox="-30 -30 60 60">
+                    <path d="M21.850968611841584,0A21.850968611841584,21.850968611841584,0,1,1,-21.850968611841584,0A21.850968611841584,21.850968611841584,0,1,1,21.850968611841584,0"></path>
+                </symbol>
+            </defs>
+            <g class="node initiative">
+                <use xlink:href="#initiativeSymbol" width="34" height="34" class="initiative symbol" data-category="{{d.category}}"></use>
+            </g>
+        </svg>
+        <h1><span>{{d.name}}</span></h1>
+        <div class="row">
+            <div class="column">
+                <p><label>Id:</label> <span>{{d.id}}</span></p>
+                <p><label>Name:</label> <span>{{d.name}}</span></p>
+                <p><label>Category:</label> <span>{{d.category}}</span></p>
+                <p><label>Size:</label> <span>{{d.size}}</span></p>
+                <p><label>Horizon:</label> <span>{{d.horizonDetails.name}}</span></p>
+                <p>
+                    <div data-if="{{d.predecessors && d.predecessors.length === 0}}">
+                        <div>
+                            <label>Predecessors:</label><span>No Predecessors</span>
+                        </div>
+                    </div>
+                    <div data-if="{{d.predecessors && d.predecessors.length > 0}}">
+                        <div>
+                            <label>Predecessors:</label>
+                            <ul data-repeat="{{d.predecessors}}">
+                                <li data-index="{{i}}">
+                                    <a href="#" onclick="return window.MunroMapApp.showDialog(this.dataset.nodeid);"
+                                        data-nodeid="{{d.id}}">{{d.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </p>
+                <p>
+                    <div data-if="{{d.successors && d.successors.length === 0}}">
+                        <div>
+                            <label>Successors:</label> <span>No Successors</span>
+                        </div>
+                    </div>
+                    <div data-if="{{d.successors && d.successors.length > 0}}">
+                        <div>
+                            <label>Successors:</label>
+                            <ul data-repeat="{{d.successors}}">
+                                <li data-index="{{i}}">
+                                    <a href="#" onclick="return window.MunroMapApp.showDialog(this.dataset.nodeid);"
+                                        data-nodeid="{{d.id}}">{{d.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="column">
+                <p data-html="{{d.details}}">
+                    <!--Loaded via data-html-->
+                    Loading details...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

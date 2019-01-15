@@ -1,0 +1,22 @@
+﻿<div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-body">
+        <h1>Decision Point</h1>
+        <div><span>Id:</span> <span>{{d.id}}</span></div>
+        <div><span>Name:</span> <span>{{d.name}}</span></div>
+        <div><span>Type:</span> <span>{{d.type}}</span></div>
+        <div><span>Horizon:</span> <span>{{d.horizonDetails.name}}</span></div>
+        <div>
+            <span>Predecessors:</span>
+            <ul data-repeat="{{d.predecessors}}">
+                <li>{{d.name}}</li>
+            </ul>
+        </div>
+        <div>
+            <span>Successors:</span>
+            <ul data-repeat="{{d.successors}}">
+                <li>{{d.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

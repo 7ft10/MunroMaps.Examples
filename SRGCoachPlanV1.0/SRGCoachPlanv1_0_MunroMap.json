@@ -1,0 +1,345 @@
+{
+  "horizons": [
+    {
+      "id": 6,
+      "name": "Goal Horizon"
+    },
+    {
+      "id": 5,
+      "name": "Mar - Jun"
+    },
+    {
+      "id": 4,
+      "name": "February"
+    },
+    {
+      "id": 3,
+      "name": "January"
+    },
+    {
+      "id": 2,
+      "name": "December"
+    },
+    {
+      "id": 1,
+      "name": "Now Horizon"
+    }
+  ],
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Now",
+      "detailsUrl": "resources/the-now-house.html",
+      "horizon": 1,
+      "type": "now",
+      "links": [],
+      "size": "XS"
+    },
+    {
+      "id": 2,
+      "category": "Product Management",
+      "name": "(Re)Start Cyber Stand-Ups",
+      "detailsUrl": "resources/initiative-02.html",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [
+        1
+      ],
+      "size": "S"
+    },
+    {
+      "id": 3,
+      "category": "Product Management",
+      "name": "(Re)Start Finance Stand-Ups",
+      "detailsUrl": "resources/initiative-03.html",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [
+        1
+      ],
+      "size": "S"
+    },
+    {
+      "id": 4,
+      "name": "2 Retros",
+      "detailsUrl": "resources/milestone-04.html",
+      "horizon": 4,
+      "type": "milestone",
+      "links": [
+        5
+      ],
+      "size": "XS"
+    },
+    {
+      "id": 5,
+      "category": "People & Culture",
+      "name": "Regular Retrospectives",
+      "detailsUrl": "resources/initiative-05.html",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [
+        6
+      ],
+      "size": "L"
+    },
+    {
+      "id": 6,
+      "category": "Product Management",
+      "name": "Update Cyber Roadmaps",
+      "detailsUrl": "resources/initiative-06.html",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [
+        2
+      ],
+      "size": "L"
+    },
+    {
+      "id": 7,
+      "name": "Standups",
+      "detailsUrl": "resources/initiative-07.html",
+      "horizon": 3,
+      "type": "milestone",
+      "links": [
+        2,
+        3
+      ],
+      "size": "XS"
+    },
+    {
+      "id": 8,
+      "category": "Product Management",
+      "name": "Update Finance Roadmaps",
+      "detailsUrl": "resources/initiative-08.html",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [
+        3
+      ],
+      "size": "XL"
+    },
+    {
+      "id": 9,
+      "category": "Delivery & Release",
+      "name": "CAB Process Review",
+      "detailsUrl": "resources/initiative-09.html",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [
+        5
+      ],
+      "levelBump": 2,
+      "size": "XL"
+    },
+    {
+      "id": 10,
+      "name": "Updated Roadmaps",
+      "detailsUrl": "resources/milestone-10.html",
+      "horizon": 4,
+      "type": "milestone",
+      "levelBump": -2,
+      "links": [
+        6,
+        8
+      ],
+      "size": "XS"
+    },
+    {
+      "id": 11,
+      "category": "Quality Assurance",
+      "name": "Good Showcases",
+      "detailsUrl": "resources/initiative-11.html",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [
+        5,
+        13,
+        14
+      ],
+      "size": "M"
+    },
+    {
+      "id": 12,
+      "category": "Product Management",
+      "name": "Planning Basics",
+      "detailsUrl": "resources/initiative-12.html",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [
+        8
+      ],
+      "size": "M"
+    },
+    {
+      "id": 13,
+      "category": "Quality Assurance",
+      "name": "Risk BVC Creation",
+      "detailsUrl": "resources/initiative-13.html",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [
+        16
+      ],
+      "size": "M",
+      "levelBump": 1
+    },
+    {
+      "id": 14,
+      "category": "Delivery & Release",
+      "name": "Defect Management",
+      "detailsUrl": "resources/initiative-14.html",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [
+        15
+      ],
+      "size": "M"
+    },
+    {
+      "id": 15,
+      "category": "People & Culture",
+      "name": "DOD Workshops",
+      "detailsUrl": "resources/initiative-15.html",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [
+        12
+      ],
+      "size": "L"
+    },
+    {
+      "id": 16,
+      "category": "Product Management",
+      "name": "Visualize Data",
+      "detailsUrl": "resources/initiative-16.html",
+      "horizon": 2,
+      "type": "initiative",
+      "links": [
+        1
+      ],
+      "size": "L"
+    },
+    {
+      "id": 17,
+      "category": "Product Management",
+      "name": "Basic Metrics",
+      "detailsUrl": "resources/initiative-17.html",
+      "horizon": 3,
+      "type": "initiative",
+      "links": [
+        16
+      ],
+      "size": "M",
+      "levelBump": 1
+    },
+    {
+      "id": 18,
+      "category": "Delivery & Release",
+      "name": "Assessments",
+      "detailsUrl": "resources/initiative-18.html",
+      "horizon": 4,
+      "type": "initiative",
+      "links": [
+        17
+      ],
+      "size": "M"
+    },
+    {
+      "id": 19,
+      "name": "Engagement Complete",
+      "detailsUrl": "resources/endpoint-01.html",
+      "horizon": 5,
+      "type": "endpoint",
+      "links": [
+        20
+      ],
+      "size": "XS"
+    },
+    {
+      "id": 20,
+      "name": "Continue?",
+      "detailsUrl": "resources/initiative-20.html",
+      "horizon": 5,
+      "type": "decisionpoint",
+      "links": [
+        9,
+        11,
+        18,
+        25
+      ],
+      "size": "XS"
+    },
+    {
+      "id": 21,
+      "category": "Product Management",
+      "name": "Cyber - Metrics as a Tool",
+      "detailsUrl": "resources/initiative-22.html",
+      "horizon": 5,
+      "type": "initiative",
+      "links": [
+        20
+      ],
+      "size": "L"
+    },
+    {
+      "id": 22,
+      "name": "Updated assessments",
+      "detailsUrl": "resources/initiative-21.html",
+      "horizon": 5,
+      "type": "milestone",
+      "links": [
+        21,
+        23
+      ],
+      "size": "XS"
+    },
+    {
+      "id": 23,
+      "category": "Product Management",
+      "name": "Finance - Metrics as a Tool",
+      "detailsUrl": "resources/initiative-23.html",
+      "horizon": 5,
+      "type": "initiative",
+      "links": [
+        20
+      ],
+      "size": "L"
+    },
+    {
+      "id": 24,
+      "name": "1 Showcase",
+      "detailsUrl": "resources/initiative-24.html",
+      "horizon": 5,
+      "type": "milestone",
+      "links": [
+        11
+      ],
+      "levelBump": -2,
+      "size": "XS"
+    },
+    {
+      "id": 25,
+      "category": "Delivery & Release",
+      "name": "Good Stories",
+      "detailsUrl": "resources/initiative-25.html",
+      "horizon": 5,
+      "type": "initiative",
+      "links": [
+        15
+      ],
+      "size": "XL"
+    },
+    {
+      "id": 26,
+      "name": "Goal",
+      "detailsUrl": "resources/the-goal.html",
+      "horizon": 6,
+      "type": "goal",
+      "links": [
+        21,
+        23
+      ],
+      "size": "S"
+    }
+  ]
+}

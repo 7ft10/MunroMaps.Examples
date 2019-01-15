@@ -1,0 +1,107 @@
+﻿.clickable:hover {
+    cursor: pointer;
+}
+
+.app *[data-category="Product Management"] {
+    fill: blue;
+}
+
+.app *[data-category="Delivery & Release"] {
+    fill: darksalmon;
+}
+
+.app *[data-category="Quality Assurance"] {
+    fill: rgb(168, 76, 204);
+}
+
+.app *[data-category="People & Culture"] {
+    fill: rgb(255, 24, 140);
+}
+
+.app *[data-size="xs"] {
+    transform: scale(0.75, 0.75) translate(-17px, -15px);
+}
+
+.app *[data-size="s"] {
+    transform: scale(1.375, 1.375) translate(-17px, -15px);
+}
+
+.app *[data-size="m"] {
+    transform: scale(1.75, 1.75) translate(-17px, -15px);
+}
+
+.app *[data-size="l"] {
+    transform: scale(2.125, 2.125) translate(-17px, -15px);
+}
+
+.app *[data-size="xl"] {
+    transform: scale(3, 3) translate(-17px, -15px);
+}
+
+section.flyout {
+    width: 40%;
+    top: 42px;
+    position: absolute;
+    display: none;
+    right: 0px;
+    background-color: black;
+    color: white;
+    height: calc(100% - 57px);
+}
+
+section.flyout.flyoutExpanded {
+    display: initial;
+}
+
+section.flyout .buttonPanel {
+    width: calc(100% - 6px);
+    height: 20px;
+    margin: 3px;
+    float: right;
+}
+
+section.flyout .buttonPanel>* {
+    float: right;
+    margin-right: 3px;
+}
+
+section.flyout .errorsPanel {
+    width: 450px/*calc(100% - 20px)*/
+    ;
+    height: 80px;
+    margin: 3px;
+    display: none;
+    z-index: 2;
+    position: absolute;
+    color: red;
+    background-color: black;
+    bottom: 24px;
+    font-size: 8pt;
+}
+
+section.flyout #jsonEditor {
+    height: calc(100% - 30px);
+    overflow-y: scroll;
+    font-size: 10pt;
+    margin: 0;
+}
+
+/* Overrides */
+
+.app .svg .horizons .horizon:not(:first-child):not(:last-child)>.horizonRect {
+    fill: white;
+    outline: cyan solid 1px;
+}
+
+.app .svg .horizons .horizon:not(:first-child):not(:last-child)>.horizonRect:hover {
+    opacity: 0.1;
+    fill: blue;
+}
+
+.app .svg .horizons .horizon:first-child>.horizonRect {
+    fill: red;
+}
+
+.app .svg .horizons .horizon:last-child>.horizonRect {
+    fill: red;
+}

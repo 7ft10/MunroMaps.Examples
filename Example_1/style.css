@@ -1,0 +1,52 @@
+﻿.clickable:hover {
+    cursor: pointer;
+}
+
+.app *[data-category="People"] {
+    fill: blue;
+}
+
+.app *[data-category="Agility"] {
+    fill: darksalmon;
+}
+
+.app *[data-category="Practices"] {
+    fill: honeydew;
+}
+
+.app *[data-category="Tools"] {
+    fill: hotpink;
+}
+
+.app *[data-size="xs"] {
+    stroke-width: 5%;
+    stroke: #ccc;
+}
+
+.app *[data-size="s"] {
+    stroke-width: 10%;
+    stroke: #ccc;
+}
+
+.app *[data-size="m"] {
+    stroke-width: 15%;
+    stroke: #ccc;
+}
+
+.app *[data-size="l"] {
+    stroke-width: 20%;
+    stroke: #ccc;
+}
+
+.app *[data-size="xl"] {
+    stroke-width: 25%;
+    stroke: #ccc;
+}
+
+.app .svg .horizons .horizon:first-child > .horizonRect {
+    fill: red;
+}
+
+.app .svg .horizons .horizon:last-child > .horizonRect {
+    fill: red;
+}

@@ -1,0 +1,192 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://munromaps.com.au/root.json",
+  "type": "object",
+  "title": "Munro Map Schema",
+  "description": "Used to validate munro maps.",
+  "required": [
+    "horizons",
+    "nodes"
+  ],
+  "properties": {
+    "horizons": {
+      "$id": "#/properties/horizons",
+      "type": "array",
+      "title": "The Horizons Schema",
+      "minimum": 1,
+      "uniqueIDs": true,
+      "items": {
+        "$id": "#/properties/horizons/items",
+        "type": "object",
+        "title": "Horizons Schema",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/horizons/items/properties/id",
+            "type": "integer",
+            "title": "Horizon Id",
+            "default": 1,
+            "minimum": 1
+          },
+          "name": {
+            "$id": "#/properties/horizons/items/properties/name",
+            "type": "string",
+            "title": "Horizon Name",
+            "default": "",
+            "examples": [
+              "Year 1",
+              "Years 2-4"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    "nodes": {
+      "$id": "#/properties/nodes",
+      "type": "array",
+      "title": "Nodes Schema",
+      "minimum": 1,
+      "uniqueIDs": true,
+      "oneGoal": true, 
+      "atLeastOneNow": true, 
+      "items": {
+        "$id": "#/properties/nodes/items",
+        "type": "object",
+        "title": "Node Items",
+        "required": [
+          "id",
+          "name",
+          "horizon",
+          "type"
+        ],
+        "oneOf": [
+          {
+            "required": [
+              "details"
+            ]
+          },
+          {
+            "required": [
+              "detailsUrl"
+            ]
+          }
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/nodes/items/properties/id",
+            "type": "integer",
+            "title": "Node Id",
+            "default": 1,
+            "minimum": 1
+          },
+          "name": {
+            "$id": "#/properties/nodes/items/properties/name",
+            "type": "string",
+            "title": "Node Name",
+            "default": "",
+            "examples": [
+              "Initiative One"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "horizon": {
+            "$id": "#/properties/nodes/items/properties/horizon",
+            "type": "integer",
+            "title": "Horizon Id Reference",
+            "minimum": 1
+          },
+          "type": {
+            "$id": "#/properties/nodes/items/properties/type",
+            "type": "string",
+            "enum": [
+              "endpoint",
+              "milestone",
+              "initiative",
+              "goal",
+              "now",
+              "decisionpoint"
+            ],
+            "title": "Node Type"
+          },
+          "detailsUrl": {
+            "$id": "#/properties/nodes/items/properties/detailsUrl",
+            "type": "string",
+            "title": "Node Details Url",
+            "examples": [
+              "/resources/details.html",
+              "http://mysite/details.html"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "details": {
+            "$id": "#/properties/nodes/items/properties/details",
+            "oneOf": [
+              {
+                "type": "array"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Node Details Text or Array of Text",
+            "examples": [
+              "HTML as a single line"
+            ],
+            "pattern": "^(.*)$",
+            "items": {
+              "$id": "#/properties/nodes/items/properties/details/items",
+              "type": "string",
+              "title": "The Items Schema",
+              "default": "",
+              "examples": [
+                "HTML text broken",
+                "over many lines",
+                "joined with <br>s"
+              ],
+              "pattern": "^(.*)$"
+            }
+          },
+          "links": {
+            "$id": "#/properties/nodes/items/properties/links",
+            "type": "array",
+            "uniqueItems": true,
+            "mustReferToAnotherNode": true,
+            "title": "Node Links - Refers to child nodes",
+            "items": {
+              "$ref": "#/properties/nodes/items/properties/id"
+            }
+          },
+          "size": {
+            "$id": "#/properties/nodes/items/properties/size",
+            "type": "string",
+            "enum": [
+              "XL",
+              "L",
+              "M",
+              "S",
+              "XS"
+            ],
+            "title": "Node Size",
+            "default": "M",
+            "pattern": "^([A-Z]{1,2})$"
+          },
+          "levelBump": {
+            "$id": "#/properties/nodes/items/properties/levelBump",
+            "type": "integer",
+            "title": "Level Bump - Bumps the level up or down"
+          },
+          "completed": {
+            "$id": "#/properties/nodes/items/properties/completed",
+            "type": "boolean",
+            "title": "Node Completed",
+            "default": false
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="Description" content="Munro Maps - An Agile way to Road Map." />
+    <link rel="icon" href="../favicon.ico" />
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="stylesheet" href="../site.css" />
+    <link rel="stylesheet" href="../munromapapp.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Munro Map - Example 1</title>
+    <style>
+        /* Critical Style */
+        html {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            height: 100vh /* calc(100% - 10px) */;
+            overflow: hidden;
+        }
+
+        header {
+            padding-top: 10px;
+            padding-left: 10px;
+            background-color: black;
+            color: white;
+            height: 32px;
+        }
+        
+        main {
+            flex: 1;
+            margin: auto;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            background-color: white;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <header>
+        <section class="header-logo">
+            <a href="../">
+                <img src="../logo-white.png" width="19" height="19" alt="Munro Maps" />
+                Munro Maps
+            </a>
+        </section>
+        <section class="header-action">
+            <nav>
+                <ul>
+                    <li><a class="clickable" id="exportJSON">JSON</a></li>
+                    <li><a class="clickable" id="exportPNG">PNG</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <main class="app">
+    </main>
+    <footer>
+        <span>
+            &copy; 7ft10 2018-2019.
+        </span>
+    </footer>
+    <section id="app-workspace" style="display:none;">
+        <script type="text/template" id="modal-template-initiative" src="modal-template-initiative.html">
+            Template loaded dynamically
+        </script>
+
+        <script type="text/template" id="modal-template-milestone" src="modal-template-milestone.html">
+            Template loaded dynamically
+        </script>
+
+        <script type="text/template" id="modal-template-decisionpoint" src="modal-template-decisionpoint.html">
+            Template loaded dynamically
+        </script>
+
+        <script type="text/template" id="modal-template-goal" src="modal-template-goal.html">
+            Template loaded dynamically
+        </script>
+
+        <script type="text/template" id="modal-template-now" src="modal-template-now.html">
+            Template loaded dynamically
+        </script>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="https://unpkg.com/d3-template-plugin/build/d3-template.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/6.6.2/ajv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+    <script>
+        function init() {
+            require.config({ 
+                waitSeconds : 30
+            });
+            requirejs.onError = function (err) {
+                console.error(err);
+                alert(err);
+            };
+            d3.json("munromap.json").then(function (map) {
+                requirejs(['../munromapapp.js'], function () {
+                    window.MunroMapApp.Start({
+                        map: map,
+                        reindexNodes: false
+                    }).then(function () {
+                        d3.select("#exportJSON").on("click", window.MunroMapApp.Export.toJSON);
+                        d3.select("#exportPNG").on("click", window.MunroMapApp.Export.toPNG);
+                    }).catch(function(error){
+                        throw error;
+                    });
+                });
+            }).catch(function (err) {
+                alert(err);
+            })
+        }
+    </script>
+</body>
+
+</html>

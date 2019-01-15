@@ -1,0 +1,19 @@
+﻿#background {
+    overflow:auto;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: -1;
+    display: grid;
+    height: 100%;
+}
+
+#background>picture {
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+}
+
+.example-links > * > a:visited, .example-links > * > a:active, .example-links > * > a:link {
+    color: black;
+}

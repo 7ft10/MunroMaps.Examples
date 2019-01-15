@@ -1,0 +1,33 @@
+﻿<div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-body">
+        <h1>The Goal!</h1>
+        <div class="row">
+            <div class="column">
+                <p><label>Id:</label> <span>{{d.id}}</span></p>
+                <p>
+                    <div data-if="{{d.predecessors && d.predecessors.length === 0}}">
+                        <div>
+                            <label>Predecessors:</label><span>No Predecessors</span>
+                        </div>
+                    </div>
+                    <div data-if="{{d.predecessors && d.predecessors.length > 0}}">
+                        <div>
+                            <label>Predecessors:</label>
+                            <ul data-repeat="{{d.predecessors}}">
+                                <li data-index="{{i}}">
+                                    <a href="#" onclick="return window.MunroMapApp.showDialog(this.dataset.nodeid);"
+                                        data-nodeid="{{d.id}}">{{d.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="column" data-html="{{d.details}}">
+                <!--Loaded via data-html-->
+                Loading details...
+            </div>
+        </div>
+    </div>
+</div>
